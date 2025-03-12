@@ -20,7 +20,7 @@ public record SingleVarPolyFactor(Fraction rationalZero) implements Comparable<S
 
     @Override
     public int compareTo(SingleVarPolyFactor o) {
-        double difference = rationalZero().getValue() - o.rationalZero().getValue();
+        double difference = rationalZero().toDouble() - o.rationalZero().toDouble();
         return (int) Math.ceil(difference);
     }
 }
