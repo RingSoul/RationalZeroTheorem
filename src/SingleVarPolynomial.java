@@ -1,8 +1,4 @@
-import java.util.Comparator;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class SingleVarPolynomial {
     private SortedSet<SingleVarMonomial> terms;
@@ -26,12 +22,14 @@ public class SingleVarPolynomial {
     }
 
     public void add(SingleVarMonomial term) {
+        Objects.requireNonNull(term);
         int higherDegree = Math.max(term.getDegree(), getPolyDegree());
         setPolyDegree(higherDegree);
         getTerms().add(term);
     }
 
     public void add(SingleVarPolynomial poly) {
+        Objects.requireNonNull(term);
         int higherDegree = Math.max(poly.getPolyDegree(), getPolyDegree());
         setPolyDegree(higherDegree);
         for (SingleVarMonomial term : poly.getTerms()) {
@@ -39,7 +37,7 @@ public class SingleVarPolynomial {
         }
     }
 
-    public List<SingleVarMonomial> condensedForm() {
+    public List<SingleVarMonomial> standardForm() {
         List<SingleVarMonomial> polynomial = new ArrayList<>(getPolyDegree() + 1);
         int tracker = getPolyDegree();
         SingleVarMonomial temp = SingleVarMonomial.with(0, tracker);
@@ -51,5 +49,9 @@ public class SingleVarPolynomial {
             }
         }
         return polynomial;
+    }
+
+    public List<Factor> factoredForm() {
+        return null;
     }
 }

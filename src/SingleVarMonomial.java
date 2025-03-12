@@ -1,22 +1,20 @@
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class SingleVarMonomial implements Comparable<SingleVarMonomial> {
-    private BigDecimal coefficient;
+    private int coefficient;
     private int degree;
 
-    private SingleVarMonomial(BigDecimal coefficient, int degree) {
+    private SingleVarMonomial(int coefficient, int degree) {
         this.coefficient = coefficient;
         this.degree = degree;
     }
 
-    public static SingleVarMonomial with(long coefficient, int degree) {
+    public static SingleVarMonomial with(int coefficient, int degree) {
         if (degree < 0) throw new IllegalArgumentException("A monomial's degree cannot be negative.");
-        BigDecimal coeff = BigDecimal.valueOf(coefficient);
-        return new SingleVarMonomial(coeff, degree);
+        return new SingleVarMonomial(coefficient, degree);
     }
 
-    public BigDecimal getCoefficient() {
+    public int getCoefficient() {
         return coefficient;
     }
 
@@ -30,7 +28,7 @@ public class SingleVarMonomial implements Comparable<SingleVarMonomial> {
         if (o == null || getClass() != o.getClass()) return false;
         SingleVarMonomial that = (SingleVarMonomial) o;
         return getDegree() == that.getDegree()
-                && getCoefficient().equals(that.getCoefficient());
+                && getCoefficient() == that.getCoefficient();
     }
 
     @Override
@@ -50,7 +48,7 @@ public class SingleVarMonomial implements Comparable<SingleVarMonomial> {
 
     public SingleVarMonomial add(SingleVarMonomial o) {
         if (this.compareTo(o) != 0) throw new IllegalArgumentException("Monomials of two different degrees cannot be added together.");
-        long newCoeff = getCoefficient().longValue() + o.getCoefficient().longValue();
+        int newCoeff = getCoefficient() + o.getCoefficient();
         return with(newCoeff, getDegree());
     }
 }
