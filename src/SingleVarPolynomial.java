@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class SingleVarPolynomial {
+public class SingleVarPolynomial extends Factor {
     private SortedSet<SingleVarMonomial> terms;
     private int polyDegree;
 
@@ -51,7 +51,7 @@ public class SingleVarPolynomial {
         return polynomial;
     }
 
-    public List<SingleVarLinearFactor> factoredForm() {
+    public SortedSet<Factor> factoredForm() {
         return null;
     }
 }

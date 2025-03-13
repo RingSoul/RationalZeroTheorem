@@ -1,11 +1,45 @@
-public record SingleVarLinearFactor(Fraction rationalZero) implements Comparable<SingleVarLinearFactor> {
+import java.util.Objects;
+
+public class SingleVarLinearFactor extends Factor {
+
+    private int linearCoefficient;
+    private int constant;
+    private Fraction rationalZero;
+
+    private SingleVarLinearFactor(int linearCoefficient, int constant) {
+        this.linearCoefficient = linearCoefficient;
+        this.constant = constant;
+        this.rationalZero = Fraction.with(constant, linearCoefficient);
+    }
+
+    public static SingleVarLinearFactor with(int linearCoefficient, int constant) {
+        if (linearCoefficient == 0) throw new IllegalArgumentException("The linear coefficient cannot be 0.");
+        return new SingleVarLinearFactor(linearCoefficient, constant);
+    }
+
+    public static SingleVarLinearFactor with(Fraction rationalZero) {
+        Objects.requireNonNull(rationalZero);
+        return with(rationalZero.denominator(), rationalZero.numerator());
+    }
+
+    public int linearCoefficient() {
+        return linearCoefficient;
+    }
+
+    public int constant() {
+        return constant;
+    }
+
+    public Fraction rationalZero() {
+        return rationalZero;
+    }
+
+    @Override
     public String toString() {
-        int numerator = rationalZero().numerator();
-        int denominator = rationalZero().denominator();
-        if (numerator == 0) return "x";
-        String sign = (numerator > 0) ? "-" : "+";
-        String coeff = (denominator == 1) ? "" : Integer.toString(denominator);
-        return "(" + coeff + "x " + sign + " " + rationalZero().numerator() + ")";
+        if (constant() == 0) return "x";
+        String sign = (constant() > 0) ? "-" : "+";
+        String coeff = (linearCoefficient() == 1) ? "" : Integer.toString(linearCoefficient());
+        return coeff + "x" + sign + rationalZero().numerator();
     }
 
     @Override
@@ -14,11 +48,5 @@ public record SingleVarLinearFactor(Fraction rationalZero) implements Comparable
         if (obj == null || getClass() != obj.getClass()) return false;
         SingleVarLinearFactor that = (SingleVarLinearFactor) obj;
         return rationalZero() == that.rationalZero();
-    }
-
-    @Override
-    public int compareTo(SingleVarLinearFactor o) {
-        double difference = rationalZero().toDouble() - o.rationalZero().toDouble();
-        return (int) Math.ceil(difference);
     }
 }
