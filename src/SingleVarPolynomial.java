@@ -29,7 +29,7 @@ public class SingleVarPolynomial {
     }
 
     public void add(SingleVarPolynomial poly) {
-        Objects.requireNonNull(term);
+        Objects.requireNonNull(poly);
         int higherDegree = Math.max(poly.getPolyDegree(), getPolyDegree());
         setPolyDegree(higherDegree);
         for (SingleVarMonomial term : poly.getTerms()) {
@@ -51,7 +51,7 @@ public class SingleVarPolynomial {
         return polynomial;
     }
 
-    public List<Factor> factoredForm() {
+    public List<SingleVarLinearFactor> factoredForm() {
         return null;
     }
 }

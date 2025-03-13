@@ -1,14 +1,4 @@
-public record SingleVarPolyFactor(Fraction rationalZero) implements Comparable<SingleVarPolyFactor> {
-    @Override
-    public boolean equals(Object obj) {
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
+public record SingleVarLinearFactor(Fraction rationalZero) implements Comparable<SingleVarLinearFactor> {
     public String toString() {
         int numerator = rationalZero().numerator();
         int denominator = rationalZero().denominator();
@@ -19,7 +9,15 @@ public record SingleVarPolyFactor(Fraction rationalZero) implements Comparable<S
     }
 
     @Override
-    public int compareTo(SingleVarPolyFactor o) {
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        SingleVarLinearFactor that = (SingleVarLinearFactor) obj;
+        return rationalZero() == that.rationalZero();
+    }
+
+    @Override
+    public int compareTo(SingleVarLinearFactor o) {
         double difference = rationalZero().toDouble() - o.rationalZero().toDouble();
         return (int) Math.ceil(difference);
     }
