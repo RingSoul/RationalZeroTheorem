@@ -2,6 +2,9 @@
 *
 !/.gitignore
 
+# Allow directories so Git can descend
+!*/
+
 # Keep all .java files
 !**/*.java
 
