@@ -1,12 +1,13 @@
 import java.util.Objects;
 
-public class SingleVarLinearFactor extends Factor {
+public class SingleVarSimplifiedBinomial extends RZTFactor {
 
-    private int linearCoefficient;
-    private int constant;
+    private SingleVarMonomial leadingTerm;
+    private SingleVarMonomial constant;
     private Fraction rationalZero;
 
     private SingleVarLinearFactor(int linearCoefficient, int constant) {
+        super();
         this.linearCoefficient = linearCoefficient;
         this.constant = constant;
         this.rationalZero = Fraction.with(constant, linearCoefficient);

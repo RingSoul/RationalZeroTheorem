@@ -1,12 +1,11 @@
 import java.util.Objects;
 
-public class SingleVarMonomial implements Comparable<SingleVarMonomial> {
+public final class SingleVarMonomial extends RZTFactor implements Comparable<SingleVarMonomial> {
     private int coefficient;
-    private int degree;
 
     private SingleVarMonomial(int coefficient, int degree) {
+        super(degree);
         this.coefficient = coefficient;
-        this.degree = degree;
     }
 
     public static SingleVarMonomial with(int coefficient, int degree) {
@@ -16,10 +15,6 @@ public class SingleVarMonomial implements Comparable<SingleVarMonomial> {
 
     public int getCoefficient() {
         return coefficient;
-    }
-
-    public int getDegree() {
-        return degree;
     }
 
     @Override

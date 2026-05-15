@@ -1,12 +1,11 @@
 import java.util.*;
 
-public class SingleVarPolynomial extends Factor {
+public final class SingleVarPolynomial extends RZTFactor {
     private SortedSet<SingleVarMonomial> terms;
-    private int polyDegree;
 
     public SingleVarPolynomial() {
+        super(0);
         this.terms = new TreeSet<>(Comparator.reverseOrder());
-        this.polyDegree = 0;
     }
 
     private SortedSet<SingleVarMonomial> getTerms() {
@@ -14,11 +13,15 @@ public class SingleVarPolynomial extends Factor {
     }
 
     private int getPolyDegree() {
-        return polyDegree;
+        return super.getDegree();
     }
 
     private void setPolyDegree(int polyDegree) {
-        this.polyDegree = polyDegree;
+        super.setDegree(polyDegree);
+    }
+
+    public String toString() {
+        StringBuilder
     }
 
     public void add(SingleVarMonomial term) {
@@ -51,7 +54,9 @@ public class SingleVarPolynomial extends Factor {
         return polynomial;
     }
 
-    public SortedSet<Factor> factoredForm() {
+    public List<RZTFactor> factoredForm() {
         return null;
     }
+
+    public Fraction
 }

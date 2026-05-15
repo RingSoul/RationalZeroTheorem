@@ -1,0 +1,9 @@
+# Ignore everything by default, but the .gitignore file at the root level
+*
+!/.gitignore
+
+# Keep all .java files
+!**/*.java
+
+# Keep documentation files
+!**/*.md
