@@ -21,7 +21,7 @@ public final class SingleVarPolynomial extends RZTFactor {
     }
 
     public String toString() {
-        StringBuilder
+        return null;
     }
 
     public void add(SingleVarMonomial term) {
@@ -42,13 +42,13 @@ public final class SingleVarPolynomial extends RZTFactor {
 
     public List<SingleVarMonomial> standardForm() {
         List<SingleVarMonomial> polynomial = new ArrayList<>(getPolyDegree() + 1);
-        int tracker = getPolyDegree();
-        SingleVarMonomial temp = SingleVarMonomial.with(0, tracker);
+        int current = getPolyDegree();
+        SingleVarMonomial temp = SingleVarMonomial.with(0, current);
         for (SingleVarMonomial term : getTerms()) {
-            if (term.getDegree() == tracker) temp = temp.add(term);
+            if (term.getDegree() == current) temp = temp.add(term);
             else {
                 polynomial.add(temp);
-                temp = SingleVarMonomial.with(0, --tracker);
+                temp = SingleVarMonomial.with(0, --current);
             }
         }
         return polynomial;
@@ -58,5 +58,4 @@ public final class SingleVarPolynomial extends RZTFactor {
         return null;
     }
 
-    public Fraction
 }

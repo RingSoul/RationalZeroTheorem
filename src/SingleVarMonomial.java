@@ -42,6 +42,7 @@ public final class SingleVarMonomial extends RZTFactor implements Comparable<Sin
     }
 
     public SingleVarMonomial add(SingleVarMonomial o) {
+        Objects.requireNonNull(o);
         if (this.compareTo(o) != 0) throw new IllegalArgumentException("Monomials of two different degrees cannot be added together.");
         int newCoeff = getCoefficient() + o.getCoefficient();
         return with(newCoeff, getDegree());
