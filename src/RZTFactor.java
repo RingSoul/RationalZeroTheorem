@@ -1,16 +1,17 @@
-public sealed class RZTFactor permits SingleVarMonomial, SingleVarPolynomial  {
+public sealed abstract class RZTFactor
+        permits Fraction, SingleVarMonomial, SingleVarLinearFactor, SingleVarPolynomial  {
 
     private int degree;
 
-    protected RZTFactor(int degree) {
+    public RZTFactor(int degree) {
         this.degree = degree;
     }
 
-    protected int getDegree() {
+    public int getDegree() {
         return degree;
     }
 
-    protected void setDegree(int degree) {
+    public void setDegree(int degree) {
         this.degree = degree;
     }
 }
